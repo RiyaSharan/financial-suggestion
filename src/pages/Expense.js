@@ -9,7 +9,7 @@ export default function Expense() {
           Expense Management
         </Typography>
         <Typography>
-          Dummy user data: John has monthly expenses of $2,500. Categories include Rent ($1,000),
+          John has monthly expenses of $2,500. Categories include Rent ($1,000),
           Groceries ($400), Utilities ($200), and Entertainment ($200).
         </Typography>
       </Paper>

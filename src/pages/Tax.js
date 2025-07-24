@@ -9,7 +9,7 @@ export default function Tax() {
           Tax Planning
         </Typography>
         <Typography>
-          Dummy user data: John earns $75,000/year. Using deductions for home office and 401(k)
+          John earns $75,000/year. Using deductions for home office and 401(k)
           contributions, his effective tax rate is reduced to 18%. Plans to invest more in tax-saving
           instruments.
         </Typography>

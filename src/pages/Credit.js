@@ -9,7 +9,7 @@ export default function Credit() {
           Credit / Debt Management
         </Typography>
         <Typography>
-          Dummy user data: John has $3,500 in credit card debt and a student loan of $20,000.
+          John has $3,500 in credit card debt and a student loan of $20,000.
           Monthly debt payments total $600. Credit score: 720. Paying down high-interest cards first.
         </Typography>
       </Paper>

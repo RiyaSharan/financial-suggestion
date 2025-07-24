@@ -9,7 +9,7 @@ export default function Investment() {
           Investment Planning
         </Typography>
         <Typography>
-          Dummy user data: John has invested $10,000 in stocks, $5,000 in mutual funds, and $3,000 in
+          John has invested $10,000 in stocks, $5,000 in mutual funds, and $3,000 in
           a fixed deposit. Annual return is estimated at 8%.
         </Typography>
       </Paper>
