@@ -1,17 +1,36 @@
 import React from "react";
-import { Container, Typography, Paper } from "@mui/material";
+import { Container, Paper, Typography } from "@mui/material";
+import FinancialChartSection from "../components/FinancialChartSection";
+
+const debts = [
+  { name: "Credit Card", value: 3500 },
+  { name: "Student Loan", value: 20000 },
+];
+
+const debtTrend = [
+  { month: "Jan", total: 23500 },
+  { month: "Feb", total: 22500 },
+  { month: "Mar", total: 21500 },
+  { month: "Apr", total: 20500 },
+  { month: "May", total: 19000 },
+  { month: "Jun", total: 17500 },
+];
 
 export default function Credit() {
   return (
     <Container sx={{ mt: 4 }}>
       <Paper elevation={3} sx={{ p: 3 }}>
-        <Typography variant="h5" gutterBottom>
-          Credit / Debt Management
-        </Typography>
+        <Typography variant="h5">Credit & Debt Management</Typography>
         <Typography>
-          John has $3,500 in credit card debt and a student loan of $20,000.
-          Monthly debt payments total $600. Credit score: 720. Paying down high-interest cards first.
+          Track your debts and see how they decrease over time.
         </Typography>
+
+        <FinancialChartSection
+          title="Debt Overview"
+          pieDataInitial={debts}
+          trendData={debtTrend}
+          pieLabel="Debt Type"
+        />
       </Paper>
     </Container>
   );
