@@ -5,9 +5,9 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 const dummyUser = {
-  email: 'demo@example.com',
+  email: 'john.doe@example.com',
   password: 'password123'
-};
+};  
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -54,9 +54,6 @@ export default function Login() {
             Login
           </Button>
         </Box>
-        <Typography variant="body2" sx={{ mt: 2 }}>
-          Demo login: demo@example.com / password123
-        </Typography>
       </Paper>
     </Container>
   );
