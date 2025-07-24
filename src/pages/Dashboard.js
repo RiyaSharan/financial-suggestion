@@ -12,6 +12,7 @@ import {
   Paper,
   Container,
 } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 const options = [
   { 
@@ -60,6 +61,7 @@ export default function Dashboard() {
           <Button color="inherit" onClick={handleDashboardClick}>
             Dashboard
           </Button>
+          <Button color="inherit" component={Link} to="/login">Logout</Button>
         </Toolbar>
       </AppBar>
 
