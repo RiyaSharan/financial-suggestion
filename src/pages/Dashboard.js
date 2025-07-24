@@ -21,7 +21,7 @@ const dashboardOptions = [
   { label: "Expense Management", path: "/expense", icon: <ExpenseIcon /> },
   { label: "Investment Planning", path: "/investment", icon: <InvestmentIcon /> },
   { label: "Retirement Planning", path: "/retirement", icon: <RetirementIcon /> },
-  { label: "Credit/Debt mgmt", path: "/credit", icon: <CreditIcon /> },
+  { label: "Credit/Debt Management", path: "/credit", icon: <CreditIcon /> },
   { label: "Tax Planning", path: "/tax", icon: <TaxIcon /> },
 ];
 
