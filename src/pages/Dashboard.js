@@ -1,46 +1,147 @@
-import React, { useEffect } from 'react';
+import React, { useState } from "react";
 import {
-  Container, Typography, Button, Box, Paper, Grid
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-// import { Container, Grid } from '@mui/material';
-import InvestmentCard from '../components/InvestmentCard';
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Paper,
+  Container,
+} from "@mui/material";
+
+const options = [
+  { 
+    label: "Expense Management",
+    data: "Here is some mock data about managing your expenses. Track your spending habits and categorize expenses."
+  },
+  { 
+    label: "Investment Planning",
+    data: "Mock data for Investment Planning: Diversify your portfolio with stocks, bonds, and mutual funds."
+  },
+  {
+    label: "Retirement Planning",
+    data: "Retirement Planning mock data: Plan your savings and investment to secure your future."
+  },
+  {
+    label: "Credit/Debt mgmt",
+    data: "Credit/Debt Management mock data: Learn how to manage your credit score and pay off debts efficiently."
+  },
+  {
+    label: "Tax Planning",
+    data: "Tax Planning mock data: Understand deductions, exemptions, and tax saving investments."
+  },
+];
 
 export default function Dashboard() {
-  const navigate = useNavigate();
+  const [showOptions, setShowOptions] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn !== 'true') {
-      navigate('/login');
-    }
-  }, [navigate]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    navigate('/login');
+  const handleDashboardClick = () => {
+    setShowOptions((prev) => !prev);
+    setSelectedOption(null); // reset selection on toggle
   };
 
-  const investments = [
-    { name: "AAPL", price: 190, change: "+1.2%" },
-    { name: "GOOGL", price: 2800, change: "-0.5%" },
-  ];
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
 
   return (
-    <>
-      <Navbar />
+    <Box>
+      {/* Navbar */}
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Finance Planner
+          </Typography>
+          <Button color="inherit" onClick={handleDashboardClick}>
+            Dashboard
+          </Button>
+        </Toolbar>
+      </AppBar>
+
       <Container sx={{ mt: 4 }}>
-        <Grid container spacing={2}>
-          {investments.map((inv, idx) => (
-            <Grid item xs={12} sm={6} md={4} key={idx}>
-              <InvestmentCard investment={inv} />
-            </Grid>
-          ))}
-        </Grid>
+        {/* Show options when Dashboard clicked */}
+        {showOptions && (
+          <Paper elevation={3} sx={{ maxWidth: 400 }}>
+            <List>
+              {options.map((option) => (
+                <ListItem key={option.label} disablePadding>
+                  <ListItemButton onClick={() => handleOptionClick(option)}>
+                    <ListItemText primary={option.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        )}
+
+        {/* Show mock data for selected option */}
+        {selectedOption && (
+          <Paper elevation={2} sx={{ mt: 3, p: 3, maxWidth: 600 }}>
+            <Typography variant="h6" gutterBottom>
+              {selectedOption.label}
+            </Typography>
+            <Typography>{selectedOption.data}</Typography>
+          </Paper>
+        )}
       </Container>
-    </>
+    </Box>
   );
+}
+
+
+// import React, { useEffect } from 'react';
+// import {
+//   Container, Typography, Button, Box, Paper, Grid
+// } from '@mui/material';
+// import { useNavigate } from 'react-router-dom';
+// import Navbar from '../components/Navbar';
+// // import { Container, Grid } from '@mui/material';
+// import InvestmentCard from '../components/InvestmentCard';
+
+// export default function Dashboard() {
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const isLoggedIn = localStorage.getItem('isLoggedIn');
+//     if (isLoggedIn !== 'true') {
+//       navigate('/login');
+//     }
+//   }, [navigate]);
+
+//   const handleLogout = () => {
+//     localStorage.removeItem('isLoggedIn');
+//     navigate('/login');
+//   };
+
+//   const investments = [
+//     { name: "AAPL", price: 190, change: "+1.2%" },
+//     { name: "GOOGL", price: 2800, change: "-0.5%" },
+//   ];
+
+//   return (
+//     <>
+//       <Navbar />
+//       <Container sx={{ mt: 4 }}>
+//         <Grid container spacing={2}>
+//           {investments.map((inv, idx) => (
+//             <Grid item xs={12} sm={6} md={4} key={idx}>
+//               <InvestmentCard investment={inv} />
+//             </Grid>
+//           ))}
+//         </Grid>
+//       </Container>
+//     </>
+//   );
+
+
+
+
+
 
 //   return (
 //     <Container maxWidth="md">
@@ -57,4 +158,4 @@ export default function Dashboard() {
 //       </Paper>
 //     </Container>
 //   );
-}
+
