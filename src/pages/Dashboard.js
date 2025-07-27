@@ -1,48 +1,79 @@
 import React from "react";
-import {
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Paper,
-  Container,
-} from "@mui/material";
-
-import ExpenseIcon from "@mui/icons-material/AttachMoney";
-import InvestmentIcon from "@mui/icons-material/TrendingUp";
-import RetirementIcon from "@mui/icons-material/Elderly";
-import CreditIcon from "@mui/icons-material/CreditCard";
-import TaxIcon from "@mui/icons-material/AccountBalance";
-
+import { Box, Typography, Avatar, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const dashboardOptions = [
-  { label: "Expense Management", path: "/expense", icon: <ExpenseIcon /> },
-  { label: "Investment Planning", path: "/investment", icon: <InvestmentIcon /> },
-  { label: "Retirement Planning", path: "/retirement", icon: <RetirementIcon /> },
-  { label: "Credit/Debt Management", path: "/credit", icon: <CreditIcon /> },
-  { label: "Tax Planning", path: "/tax", icon: <TaxIcon /> },
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import SavingsIcon from "@mui/icons-material/Savings";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+
+const tools = [
+  { name: "Expense Management", icon: <ReceiptLongIcon />, route: "/expense", bg: "#3f51b5" },
+  { name: "Investment Planning", icon: <TrendingUpIcon />, route: "/investment", bg: "#4caf50" },
+  { name: "Retirement Planning", icon: <SavingsIcon />, route: "/retirement", bg: "#fbc02d" },
+  { name: "Credit/Debt Management", icon: <CreditCardIcon />, route: "/credit", bg: "#f44336" },
+  { name: "Tax Planning", icon: <AccountBalanceIcon />, route: "/tax", bg: "#9c27b0" },
 ];
 
 export default function Dashboard() {
   const navigate = useNavigate();
 
+  // Manual layout coordinates for 3 top, 2 bottom in circular shape
+  const positions = [
+    { top: "25%", left: "30%" },
+    { top: "25%", left: "50%" },
+    { top: "25%", left: "70%" },
+    { top: "60%", left: "40%" },
+    { top: "60%", left: "60%" },
+  ];
+
   return (
-    <Container sx={{ mt: 4 }}>
-      <Paper elevation={3} sx={{ maxWidth: 500, mx: "auto" }}>
-        <List>
-          {dashboardOptions.map((option) => (
-            <ListItem key={option.label} disablePadding>
-              <ListItemButton onClick={() => navigate(option.path)}>
-                <ListItemIcon>{option.icon}</ListItemIcon>
-                <ListItemText primary={option.label} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </Container>
+    <Box
+      sx={{
+        height: "80vh",
+        width: "100%",
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {tools.map((tool, index) => (
+        <Box
+          key={tool.name}
+          sx={{
+            position: "absolute",
+            top: positions[index].top,
+            left: positions[index].left,
+            transform: "translate(-50%, -50%)",
+            textAlign: "center",
+          }}
+          onClick={() => navigate(tool.route)}
+        >
+          <Tooltip title={tool.name}>
+            <Avatar
+              sx={{
+                bgcolor: tool.bg,
+                width: 100,
+                height: 100,
+                margin: "auto",
+                cursor: "pointer",
+                transition: "transform 0.2s",
+                "&:hover": {
+                  transform: "scale(1.1)",
+                  boxShadow: 3,
+                },
+              }}
+            >
+              {tool.icon}
+            </Avatar>
+          </Tooltip>
+          <Typography variant="body2" mt={1}>
+            {tool.name}
+          </Typography>
+        </Box>
+      ))}
+    </Box>
   );
 }
-
